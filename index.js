@@ -8,7 +8,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.json());
 app.use(cors({
-  origin: "https://your-netlify-site.netlify.app", // ✅ Replace with your actual Netlify domain
+  origin: "https://https://famous-creponne-68f707.netlify.app/", // ✅ Replace with your actual Netlify domain
   methods: "GET,POST,PUT,DELETE",
   credentials: true
 }));

@@ -6,21 +6,20 @@ require('dotenv').config();
 const app = express();
 app.use(express.json());
 
-// ✅ Update CORS to allow Netlify frontend
+
 const allowedOrigins = [
-  'http://famous-creponne-68f707.netlify.app/', // ✅ Replace with your actual Netlify URL
+  "http://localhost:3000",
+  "https://famous-creponne-68f707.netlify.app" 
 ];
-
-
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error("Not allowed by CORS"));
+      callback(new Error("CORS not allowed"));
     }
   },
-  methods: "GET,POST,PUT,DELETE",
+  methods: "GET, POST, PUT, DELETE",
   credentials: true
 }));
 // Connect to MongoDB

@@ -11,12 +11,18 @@ const allowedOrigins = [
   'http://famous-creponne-68f707.netlify.app/', // ✅ Replace with your actual Netlify URL
 ];
 
+
 app.use(cors({
-  origin: allowedOrigins,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: "GET,POST,PUT,DELETE",
   credentials: true
 }));
-
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB Connected Successfully'))
